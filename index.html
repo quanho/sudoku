@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sudoku Trainer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="main">
+    <div>
+      <div class="controls">
+        <select id="gridSize">
+          <option value="6">6×6</option>
+          <option value="9" selected>9×9</option>
+        </select>
+        <select id="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium" selected>Medium</option>
+          <option value="hard">Hard</option>
+          <option value="expert">Expert</option>
+        </select>
+        <button id="newGame">New game</button>
+        <button id="undo">Undo</button>
+        <button id="erase">Erase</button>
+        <span id="timer">Time: 00:00</span>
+      </div>
+      <div id="grid" class="grid" aria-label="Sudoku grid"></div>
+      <div class="keypad" id="keypad" aria-label="Number keypad"></div>
+    </div>
+
+    <section class="panel">
+      <button id="hint" class="hint-header-btn">💡 Hint</button>
+      <p id="coach">Click "New game" to start.</p>
+    </section>
+  </main>
+
+  <script type="module" src="js/ui.js"></script>
+</body>
+</html>

@@ -409,6 +409,18 @@ function setCellValue(v) {
   
   const prev = puzzle[r][c];
   
+  // If erase (v === 0), always erase the cell
+  if (v === 0) {
+    highlightedNumber = null;
+    if (prev === 0) return; // Already empty, nothing to erase
+    
+    undoStack.push({ r, c, prev });
+    puzzle[r][c] = 0;
+    coachEl.textContent = "Cell erased.";
+    render();
+    return;
+  }
+  
   // If cell has any number (given or user-filled), clicking keypad highlights that number
   if (prev !== 0) {
     highlightedNumber = v;
@@ -423,7 +435,7 @@ function setCellValue(v) {
 
   // Check if move is valid before placing
   const validateFn = gridSize === 6 ? isValidMove6x6 : isValidMove;
-  if (v !== 0 && !validateFn(puzzle, r, c, v)) {
+  if (!validateFn(puzzle, r, c, v)) {
     coachEl.textContent = "Invalid: this number conflicts with row/col/box.";
     return;
   }

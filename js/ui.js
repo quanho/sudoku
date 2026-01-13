@@ -542,5 +542,7 @@ for (let n = 1; n <= gridSize; n++) {
   keypadEl.appendChild(btn);
 }
 
-// init
-loadPuzzle(DEMO);
+// init - Generate a new random puzzle instead of loading the demo
+const initialDifficulty = document.getElementById("difficulty").value || "medium";
+const initialPuzzle = gridSize === 6 ? generate6x6Sudoku(initialDifficulty) : generateSudoku(initialDifficulty);
+loadPuzzle(initialPuzzle.puzzle);
